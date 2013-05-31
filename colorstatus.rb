@@ -31,13 +31,13 @@
 #
 # Dependencies:
 # -------------
-# Requires 'classes/class.String.rb' in same folder
+# Requires 'class.String.rb' in same folder
 #
 
 
 # load dependencies:
 Dir.chdir( ENV['HOME'] + '/vm_home_devuser/scripts/' ) do |dir|
-	require './classes/class.String.rb'
+	require './lib/classes/class.String.rb'
 end
 
 # colorize lines:

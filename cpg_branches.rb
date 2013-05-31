@@ -65,7 +65,7 @@ DS = ENV['HOME'][0,1]
 
 # load dependencies:
 Dir.chdir( ENV['HOME'] + DS + 'vm_home_devuser' + DS + 'scripts' ) do |dir|
-	require '.' + DS + 'classes/class.String.rb'
+	require '.' + DS + 'lib/classes/class.String.rb'
 end
 
 # run!

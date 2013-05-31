@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby -w
 
-require 'classes/class.String.rb'
-require 'classes/class.Monitor.rb'
+require './lib/classes/class.String.rb'
+require './lib/classes/class.Monitor.rb'
 
 monitor = Monitor.new( 'https://www.cpg.org/account/sign-in/' )
 
