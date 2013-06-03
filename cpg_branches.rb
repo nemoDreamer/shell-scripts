@@ -25,7 +25,7 @@
 #     chmod +x ~/vm_home_devuser/scripts/cpg_branches.rb
 #
 # * Symlink to 'bin':
-#     ln ~/vm_home_devuser/scripts/cpg_branches.rb /usr/local/bin/cpg_branches
+#     ln -s ~/vm_home_devuser/scripts/cpg_branches.rb /usr/local/bin/cpg_branches
 #
 #
 # Hierarchy:

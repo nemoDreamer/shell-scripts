@@ -15,7 +15,7 @@
 #     chmod +x ~/vm_home_devuser/scripts/colorstatus.rb
 #
 # * Symlink to 'bin':
-#     ln ~/vm_home_devuser/scripts/colorstatus.rb /usr/local/bin/colorstatus
+#     ln -s ~/vm_home_devuser/scripts/colorstatus.rb /usr/local/bin/colorstatus
 #
 #
 # Usage:
@@ -42,7 +42,7 @@ end
 
 # colorize lines:
 $stdin.each do |line|
-	print (if line.match(/^A/)
+	print(if line.match(/^A/)
 			# A       master.css
 			# R       master.css
 			line.color('green')

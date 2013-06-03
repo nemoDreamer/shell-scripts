@@ -15,7 +15,7 @@
 #     chmod +x ~/vm_home_devuser/scripts/colordiff.rb
 #
 # * Symlink to 'bin':
-#     ln ~/vm_home_devuser/scripts/colordiff.rb /usr/local/bin/colordiff
+#     ln -s ~/vm_home_devuser/scripts/colordiff.rb /usr/local/bin/colordiff
 #
 #
 # Usage:
@@ -43,22 +43,22 @@ end
 
 # colorize lines:
 $stdin.each do |line|
-	print c = if line.match(/^(Index\:|===)/)
-		# Index: css/master.css
-		# ===================================================================
-		line.color('white').bold
-	elsif line.match(/^(\-\-\-|\+\+\+|@@)/)
-		# --- css/master.css	(revision 13748)
-		# +++ css/master.css	(working copy)
-		# @@ -1645,11 +1645,27 @@
-		line.color('blue')
-	elsif line.match(/^\-/)
-		# -#left-rail .box-05 ul ul li.current a.current {
-		line.color('red')
-	elsif line.match(/^\+/)
-		# +#left-rail .box-05 ul ul li.current {
-		line.color('green')
-	else
-		line
-	end
+	print(if line.match(/^(Index\:|===)/)
+			# Index: css/master.css
+			# ===================================================================
+			line.color('white').bold
+		elsif line.match(/^(\-\-\-|\+\+\+|@@)/)
+			# --- css/master.css	(revision 13748)
+			# +++ css/master.css	(working copy)
+			# @@ -1645,11 +1645,27 @@
+			line.color('blue')
+		elsif line.match(/^\-/)
+			# -#left-rail .box-05 ul ul li.current a.current {
+			line.color('red')
+		elsif line.match(/^\+/)
+			# +#left-rail .box-05 ul ul li.current {
+			line.color('green')
+		else
+			line
+		end)
 end

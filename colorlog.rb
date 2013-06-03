@@ -15,7 +15,7 @@
 #     chmod +x ~/vm_home_devuser/scripts/colorlog.rb
 #
 # * Symlink to 'bin':
-#     ln ~/vm_home_devuser/scripts/colorlog.rb /usr/local/bin/colorlog
+#     ln -s ~/vm_home_devuser/scripts/colorlog.rb /usr/local/bin/colorlog
 #
 #
 # Usage:
@@ -41,7 +41,7 @@ end
 
 # colorize lines:
 $stdin.each do |line|
-	print (if line.match(/^r\d+/)
+	print(if line.match(/^r\d+/)
 			# r14382 | pblyth | 2013-03-20 13:38:26 -0400 (Wed, 20 Mar 2013) | 1 line
 			line.color('blue')
 		elsif line.match(/^\-\-\-/)
