@@ -2,13 +2,11 @@
 
 # Dependencies:
 # -------------
-# Requires 'class.String.rb' in same folder
+# Requires `class.String.rb` in `../lib/classes/`
 #
 
 # load dependencies:
-Dir.chdir( ENV['HOME'] + '/vm_home_devuser/scripts/' ) do |dir|
-  require './lib/classes/class.String.rb'
-end
+require_relative '../lib/classes/class.String.rb'
 
 # define sites list
 sites = %w[

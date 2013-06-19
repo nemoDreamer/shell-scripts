@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby -w
 
-require '../lib/modules/module.Clipboard.rb'
+require_relative '../lib/modules/module.Clipboard.rb'
+
 include Clipboard
 
 REGEX = /(?:~((?:\w|-)+)(?:\^|"))+?/

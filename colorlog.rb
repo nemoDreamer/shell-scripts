@@ -1,43 +1,49 @@
 #!/usr/bin/env ruby -w
 
-##
-# ColorLog
-# =========
-# @author Philip Blyth
-#
-#
-# Installation:
-# -------------
-# * On dev instance, save to:
-#     ~/vm_home_devuser/scripts/
-#
-# * Make sure is executable:
-#     chmod +x ~/vm_home_devuser/scripts/colorlog.rb
-#
-# * Symlink to 'bin':
-#     ln -s ~/vm_home_devuser/scripts/colorlog.rb /usr/local/bin/colorlog
-#
-#
-# Usage:
-# ------
-# * Pipe any output into it:
-#     svn log -l 10 | colorlog
-#
-# * Optionally, create handy alias to pipe svn diff w/ 'ignore whitespace all':
-#     Add the following to your ~/.profile or ~/.bash_profile:
-#       alias log="svn log -l | colorlog"
-#
-#
-# Dependencies:
-# -------------
-# Requires 'class.String.rb' in same folder
-#
+require 'trollop'
 
+Trollop::options do
+	version 'ColorLog v1.1 (Philip Blyth)'
+	banner <<-BANNER
+Installation:
+-------------
+* On dev instance, save to:
+
+    ~/vm_home_devuser/scripts/
+
+* Make sure is executable:
+
+    chmod +x ~/vm_home_devuser/scripts/colorlog.rb
+
+* Symlink to `bin`:
+
+    ln -s ~/vm_home_devuser/scripts/colorlog.rb /usr/local/bin/colorlog
+
+
+Usage:
+------
+* Pipe any output into it:
+
+    svn log -l 10 | colorlog
+
+* Optionally, create handy alias to pipe svn diff w/ 'ignore whitespace all':
+  Add the following to your `~/.profile` or `~/.bash_profile`:
+
+	alias log="svn log -l | colorlog"
+
+
+Dependencies:
+-------------
+Requires `class.String.rb` in `lib/classes/`
+
+
+Options:
+--------
+BANNER
+end
 
 # load dependencies:
-Dir.chdir( ENV['HOME'] + '/vm_home_devuser/scripts/' ) do |dir|
-	require './lib/classes/class.String.rb'
-end
+require_relative 'lib/classes/class.String.rb'
 
 # colorize lines:
 $stdin.each do |line|

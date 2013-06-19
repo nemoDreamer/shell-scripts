@@ -40,13 +40,14 @@
 # * !!! will only run in 'web-[...]' folders !!!
 # * run:
 #     switch help
+#     switch -h
 #     switch <branch>
 #
 
 
 if [[ $# -gt 0 ]]; then
 
-	if [[ $1 == "help" ]]; then
+	if [[ $1 == "help" || $1 == "-h" ]]; then
 
 		# output help
 		cat <<-'TOKEN'
@@ -54,9 +55,10 @@ if [[ $# -gt 0 ]]; then
 			Moves the 'active' folder to 'branches', renaming it to active's branch name,
 			and promotes a branch folder from 'branches' to become the new 'active'.
 
-			Usage: switch <branch>
+			Usage: switch <branch> [OPTIONS]
 			Parameters:
 			    <branch>: name of SVN branch to swap to.
+			    -h, help: display this message.
 			----------
 		TOKEN
 
@@ -75,5 +77,5 @@ if [[ $# -gt 0 ]]; then
 
 	fi
 else
-	echo "Missing <branch> argument! (use '$0 help' for usage)";
+	echo "Missing <branch> argument! (use '$0 -h' or '$0 help' for usage)";
 fi
