@@ -26,10 +26,11 @@ Usage:
 
     svn log -l 10 | colorlog
 
-* Optionally, create handy alias to pipe svn diff w/ 'ignore whitespace all':
+* Optionally, create handy alias to pipe svn log w/ limit:
   Add the following to your `~/.profile` or `~/.bash_profile`:
 
-	alias log="svn log -l | colorlog"
+	function fn_log() { svn log -l $1 | colorlog; }
+	alias log=fn_log
 
 
 Dependencies:

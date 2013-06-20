@@ -31,7 +31,8 @@ Usage:
 * Optionally, create handy alias to pipe svn diff w/ 'ignore whitespace all':
   Add the following to your `~/.profile` or `~/.bash_profile`:
 
-	alias diffx="svn diff -x -w | colordiff"
+	function fn_diff() { svn diff -x -w $* | colordiff; }
+	alias diffx=fn_diff
 
 
 Dependencies:
