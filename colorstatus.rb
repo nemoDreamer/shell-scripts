@@ -64,6 +64,8 @@ $stdin.each do |line|
 		elsif line.match(/^\?/)
 			# ?       master.css
 			line.color('yellow')
+		elsif line.match(/^\s*$/)
+			# blank
 		else
 			line
 		end)
