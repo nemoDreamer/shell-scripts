@@ -25,7 +25,7 @@ for source in ${shell_scripts[@]}; do
   if [[ $u = false ]]; then # Installing
 
     if [[ ! -e "$target" && ! -L "$target" ]]; then
-      ln -s "$source" "$target"
+      ln -s "$PWD/$source" "$target"
     else
       echo "WARNING: $target already exits:"
     fi
