@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+# SETUP
+
+NUMBER=2
+PROJECT=web-cpg
+RESTART=false
+DATASOURCES=false
+
+# tell MCampbell!
+read -p "Have you asked QA whether it's OK to deploy? " -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[^Yy]$ ]]
+then
+    echo "Well you should."
+    exit 1
+fi
+
+# parse the flag options (and their arguments)
+while getopts rp:n: OPT; do
+    case "$OPT" in
+      n)
+        NUMBER="$OPTARG" ;;
+      p)
+        PROJECT="$OPTARG" ;;
+      r)
+        RESTART=true ;;
+      d)
+        DATASOURCES=true ;;
+      [?])
+        # got invalid option
+        echo "Usage: $0 [-n number] [-p project] [-r] [-d]
+        -n [number]: cloud instance number (1,2 or 3. default: 2)
+        -p [project]: svn project (default: web-cpg)
+        -r: restart
+        -d: modify datasources" >&2
+        exit 1 ;;
+    esac
+done
+
+# get rid of the just-finished flag arguments
+shift $(($OPTIND-1))
+
+
+# calculate box numbers
+BOX1=$(((${NUMBER}*2)-1))
+BOX2=$((${NUMBER}*2))
+
+# GO!
+
+# - SVN up
+echo "--- Updating '${PROJECT}' Code on dev0${NUMBER} ---"
+ssh vwebdevd${BOX1} "cd ~/projects/dev0${NUMBER}/${PROJECT}/active && svn up"
+
+# - Restart?
+if [[ $RESTART == true ]]; then
+	echo "--- Restarting vwebdevd${BOX1} ---"
+	ssh vwebdevd${BOX1} "ws restart"
+
+	echo "--- Restarting vwebdevd${BOX2} ---"
+	ssh vwebdevd${BOX2} "ws restart"
+fi
+
+# - Datasources?
+if [[ $DATASOURCES == true ]]; then
+	echo "--- Remember to Modify Datasources! ---"
+	open "https://webdevd${BOX1}-dev0${NUMBER}-coldfusion.cpg.org/CFIDE/administrator/index.cfm"
+	open "https://webdevd${BOX2}-dev0${NUMBER}-coldfusion.cpg.org/CFIDE/administrator/index.cfm"
+fi
+
+echo && echo "Remember to tell QA it's deployed!"
