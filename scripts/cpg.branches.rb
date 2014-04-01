@@ -68,15 +68,13 @@ DEFAULT  = 'web-cpg'
 BRANCHES = 'branches'
 README   = 'README'
 
-DS = ENV['HOME'][0,1]
-
 
 # load dependencies:
-require_relative 'lib' + DS + 'classes' + DS + 'class.String.rb'
+require_relative '../lib/classes/class.String.rb'
 
 
 # run!
-Dir.chdir( ENV['HOME'] + DS + 'projects' + DS + 'dev' ) do |sites_dir| # was: Dir.pwd().sub(%r{(/sites/[^/]+/).*$}, '\\1')
+Dir.chdir( ENV['HOME'] + '/projects/dev' ) do |sites_dir| # was: Dir.pwd().sub(%r{(/sites/[^/]+/).*$}, '\\1')
 
 	# change to 'web-cpg' or 1st ARGV
 	Dir.chdir(ARGV[0] || DEFAULT) do |web_dir|
@@ -105,7 +103,7 @@ Dir.chdir( ENV['HOME'] + DS + 'projects' + DS + 'dev' ) do |sites_dir| # was: Di
 		$current_README = $read_me.assoc($current[2]).to_a[1]
 
 		# trick ENV into returning us to this directory after exit?
-		# ENV['OLDPWD'] = sites_dir + DS + web_dir
+		# ENV['OLDPWD'] = sites_dir + w/eb_dir
 		# nope, ruby can't modify the pwd of the parent shell... :'(
 
 	end
