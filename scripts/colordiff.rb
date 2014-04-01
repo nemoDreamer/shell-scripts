@@ -46,7 +46,7 @@ BANNER
 end
 
 # load dependencies:
-require_relative 'lib/classes/class.String.rb'
+require_relative '../lib/classes/class.String.rb'
 
 # colorize lines:
 $stdin.each do |line|

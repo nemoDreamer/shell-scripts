@@ -23,11 +23,11 @@ Installation:
 
 * Make sure is executable:
 
-	chmod +x ~/vm_home_devuser/scripts/cpg_branches.rb
+	chmod +x ~/vm_home_devuser/scripts/cpg.branches.rb
 
 * Symlink to `bin`:
 
-	ln -s ~/vm_home_devuser/scripts/cpg_branches.rb /usr/local/bin/cpg_branches
+	ln -s ~/vm_home_devuser/scripts/cpg.branches.rb /usr/local/bin/cpg.branches
 
 
 Hierarchy:

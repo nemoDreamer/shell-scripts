@@ -2,11 +2,11 @@
 
 LOCAL_BIN="/usr/local/bin"
 
-u=false
+installing=true
 
 while [ "$1" != "" ]; do
   case $1 in
-      -u | --uninstall )  u=true
+      -u | --uninstall )  installing=false
                           ;;
       -h | --help )       echo "Usage: -u | --uninstall : to uninstall"
                           exit
@@ -15,27 +15,33 @@ while [ "$1" != "" ]; do
   shift
 done
 
-# Concatenate Ruby scripts w/ shell scripts
-declare -a shell_scripts=( *.rb switch cpg_deploy_dev )
 
+
+# Script symlinks
+# --------------------------------------------------
+
+# - Concatenate Ruby scripts w/ shell scripts
+declare -a shell_scripts=( scripts/* )
+
+# - Loop
 for source in ${shell_scripts[@]}; do
   base=`basename ${source} .rb`
   target="$LOCAL_BIN/$base"
 
-  if [[ $u = false ]]; then # Installing
+  if [ $installing = true ]
+  then # Installing:
 
-    if [[ ! -e "$target" && ! -L "$target" ]]; then
+    if [[ ! -e "$target" && ! -L "$target" ]]
+    then # - Create symlink
       ln -s "$PWD/$source" "$target"
     else
       echo "WARNING: $target already exits:"
     fi
 
-    # Verify
-    ls -l "$target"
+  else # Uninstalling:
 
-  else # Uninstalling
-
-    if [[ -e "$target" || -L "$target" ]]; then
+    if [[ -e "$target" || -L "$target" ]]
+    then # - Remove file or symlink
       rm "$target"
     else
       echo "WARNING: $target doesn't exit."
@@ -44,3 +50,6 @@ for source in ${shell_scripts[@]}; do
   fi
 
 done
+
+# - Verify
+# ls -la /usr/local/bin/* | grep "$PWD"

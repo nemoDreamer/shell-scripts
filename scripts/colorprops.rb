@@ -39,7 +39,7 @@ BANNER
 end
 
 # load dependencies:
-require_relative 'lib/classes/class.String.rb'
+require_relative '../lib/classes/class.String.rb'
 
 def line_match line
 	if line.match(/^(.*) - (.*)$/)
