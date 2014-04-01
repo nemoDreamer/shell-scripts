@@ -15,6 +15,20 @@ while [ "$1" != "" ]; do
   shift
 done
 
+# \e[xxm codes aren't working...
+c0=$(tput sgr 0)
+cI=$(tput sgr 1)
+cR=$(tput setaf 1)
+cG=$(tput setaf 2)
+cB=$(tput setaf 4)
+
+col () {
+  echo -n "$(tput setaf $1)${2}$(tput sgr 0)"
+}
+
+inv () {
+  echo -n "$(tput sgr 1)${1}$(tput sgr 0)"
+}
 
 
 # Script symlinks
@@ -33,18 +47,20 @@ for source in ${shell_scripts[@]}; do
 
     if [[ ! -e "$target" && ! -L "$target" ]]
     then # - Create symlink
+      col 2 "INSTALLING: "; echo "$target"
       ln -s "$PWD/$source" "$target"
-    else
-      echo "WARNING: $target already exits:"
+    else # - Do nothing
+      col 1 "WARNING: "; echo "$target already exits."
     fi
 
   else # Uninstalling:
 
     if [[ -e "$target" || -L "$target" ]]
     then # - Remove file or symlink
+      col 2 "REMOVING: "; echo "$target"
       rm "$target"
-    else
-      echo "WARNING: $target doesn't exit."
+    else # - Do nothing
+      col 1 "WARNING: "; echo "$target doesn't exist."
     fi
 
   fi
