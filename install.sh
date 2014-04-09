@@ -67,6 +67,12 @@ for source in ${shell_scripts[@]}; do
 
 done
 
+
+# Simple symlink to original folder
+# --------------------------------------------------
+ln -s "$PWD" ~/.shell-scripts
+
+
 # - Verify
 # ls -la /usr/local/bin/* | grep "$PWD"
 
