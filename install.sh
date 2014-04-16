@@ -36,6 +36,13 @@ inv () {
 }
 
 
+# Update submodules
+# --------------------------------------------------
+
+git submodule init
+git submodule update
+
+
 # Install gems
 # --------------------------------------------------
 
