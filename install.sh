@@ -70,7 +70,10 @@ done
 
 # Simple symlink to original folder
 # --------------------------------------------------
-ln -s "$PWD" ~/.shell-scripts
+back='~/.shell-scripts'
+if [[ ! -e $back ]]; then
+  ln -s "$PWD" "$back"
+fi
 
 
 # - Verify
