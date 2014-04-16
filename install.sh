@@ -91,10 +91,21 @@ done
 
 # Simple symlink to original folder
 # --------------------------------------------------
-back='~/.shell-scripts'
-if [[ ! -e $back ]]; then
-  ln -s "$PWD" "$back"
+whoami=`whoami`
+back="/Users/${whoami}/.shell-scripts"
+if [[ $installing = true ]]
+then
+  if [[ ! -e $back && ! -L $back ]]
+  then
+    ln -s "$PWD" "$back"
+  fi
+else
+  if [[ -L $back ]]
+  then
+    rm "$back"
+  fi
 fi
+
 
 
 # - Verify
@@ -133,9 +144,13 @@ fi
 # Usage
 # --------------------------------------------------
 
-if [[ $installing = true ]]; then
+if [[ $installing = true ]]
+then
   echo
   echo "${cB}Thanks for installing!${c0}"
   echo '`cat USAGE.md` for usage.'
   echo '`cat aliases.sh` for aliases.'
+else
+  echo
+  echo "${cB}Sorry to see you go...!${c0}"
 fi
