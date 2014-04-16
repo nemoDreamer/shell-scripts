@@ -3,12 +3,17 @@
 LOCAL_BIN="/usr/local/bin"
 
 installing=true
+fast=false
 
 while [ "$1" != "" ]; do
   case $1 in
       -u | --uninstall )  installing=false
                           ;;
-      -h | --help )       echo "Usage: -u | --uninstall : to uninstall"
+      -f | --fast )       fast=true
+                          ;;
+      -h | --help )       echo "Usage:
+  -f | --fast : skip bundler, etc...
+  -u | --uninstall : to uninstall"
                           exit
                           ;;
   esac
@@ -29,6 +34,15 @@ col () {
 inv () {
   echo -n "$(tput sgr 1)${1}$(tput sgr 0)"
 }
+
+
+# Install gems
+# --------------------------------------------------
+
+if [[ $installing = true && $fast = false ]]
+then
+  gem install bundler && bundle install
+fi
 
 
 # Script symlinks
