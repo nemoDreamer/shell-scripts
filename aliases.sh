@@ -41,6 +41,8 @@ alias acc="cpg-s && cd webroot/org/cpg/myBenefits && pwd && url"
 alias hbpc="cpg-s && cd webroot/org/cpg/hbpc && pwd && url"
 # - Proof of Concept
 alias ecd_poc="ecd-s && webroot/poc && pwd && url"
+# - Living the Good News
+alias ecd_poc="p-s && cd web-livingthegood && pwd && url"
 # - foo
 alias foo="p-s && cd web-foo/active/ && pwd && url"
 # - Clicker Templates (obsolete)
