@@ -129,11 +129,11 @@ alias int_br="int-s && cd .. && cpg.branches web-intranet"
 
 # - Colorized SVN diff (ignores white-space changes!)
 #   (usage: diffc [files])
-function diffc() { svn diff -x -w --no-diff-deleted $* | colordiff; }
+function diffc() { svn diff -x --ignore-space-change --no-diff-deleted $* | colordiff; }
 
 # - View same SVN diff in Sublime Text (ignores white-space changes!)
 #   (usage: diffc [files])
-function diffx() { svn diff -x -w --no-diff-deleted $* | subl; }
+function diffx() { svn diff -x --ignore-space-change --no-diff-deleted $* | subl; }
 
 
 # Status and Logs
