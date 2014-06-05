@@ -66,8 +66,8 @@ object = [
   ["the subway", false],
   ["a pole", false],
   ["a ten ton truck", false],
-  ["my arm", false]
-  ["my toe", false]
+  ["my arm", false],
+  ["my toe", false],
   ["my head", false]
 ]
 
